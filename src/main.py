@@ -13,7 +13,7 @@ from scipy import integrate
 import csv
 import func
 
-path = "New renamed files path ( e.g. C:/.../test/data)"
+#path = "New renamed files path ( e.g. C:/.../test/data)"
 #path = "C:/Users/Prodesk_400_i5/Documents/Sadollah_lammps/MS/sin/TEST_NEW/test/DMA-MD/tests/data/"
 
 ####################################### Parameters and inputs##################
@@ -53,8 +53,8 @@ print ()
 print ()
 
 ###################Input File#############################################
-Input_Files = "*_Frame2.txt"                         # Stress text files 
-#Input_Files = input('Input the name files (use * for numbers, e.g. *_Frame2.txt):  ') 
+#Input_Files = "*_Frame2.txt"                         # Stress text files 
+Input_Files = input('Input the name files (use * for numbers, e.g. *_Frame2.txt):  ') 
 print ()
 
 
