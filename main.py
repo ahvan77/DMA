@@ -14,7 +14,7 @@ import csv
 import func
 
 #path = "New renamed files path ( e.g. C:/.../test/data)"
-path = "C:/Users/Prodesk_400_i5/Documents/Sadollah_lammps/MS/sin/TEST_NEW/test/DMA-MD/tests/data/"
+path0 = "C:/Users/Prodesk_400_i5/Documents/Sadollah_lammps/MS/sin/TEST_NEW/test/DMA-MD/tests/data/"
 
 ####################################### Parameters and inputs##################
 def splitstrip(s):
@@ -63,7 +63,7 @@ columns_name = ['Time', 'Stress']
 def last_4chars(x):
     return(x[:2])
 ##Read and sort the txt files =================================================
-sx=fnmatch.filter(os.listdir(path), Input_Files )
+sx=fnmatch.filter(os.listdir(path0), Input_Files )
 sx.sort(key = last_4chars) 
 
 #==================================Main program================================
@@ -73,7 +73,7 @@ s11=[]
 t11=[]
 
 #==== Read and save the XY shear stress (pa) data in athe s11 list =================================    
-for j in range(int((len(fnmatch.filter(os.listdir(path), Input_Files ))))):
+for j in range(int((len(fnmatch.filter(os.listdir(path0), Input_Files ))))):
         f_number=int((sx[j].split(("_"),3)[0]))
         s = func.ReadFile(sx[j])
         s = np.array(s)[4:]
