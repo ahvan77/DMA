@@ -13,7 +13,8 @@ from scipy import integrate
 import csv
 import func
 
-
+path = "New renamed files path ( e.g. C:/.../test/data)"
+#path = "C:/Users/Prodesk_400_i5/Documents/Sadollah_lammps/MS/sin/TEST_NEW/test/DMA-MD/tests/data/"
 
 ####################################### Parameters and inputs##################
 def splitstrip(s):
@@ -34,7 +35,6 @@ with open('params.dat','r') as f:
 # n : average of data (default = 1)
 
 kb=1.380649*1e-23                                    # Boltzmann constant
-*_
 Sim = int(N*1000/(ts*10**(logw)))                    # Simulation time (fs)
 Data_output = int(Sim/M)           
 ti = np.array([i for i in range(0,Sim,Data_output)]) # time array 
@@ -53,10 +53,8 @@ print ()
 print ()
 
 ###################Input File#############################################
-#Input_Files = "*_Frame2.txt"                         # Stress text files 
-Input_Files = input('Input the name files (use * for numbers, e.g. *_Frame2.txt):  ') 
-#print ("To claculate shear stresss using Green_Kubo press G" )
-#print ("To claculate shear stresss using time-series press T" )
+Input_Files = "*_Frame2.txt"                         # Stress text files 
+#Input_Files = input('Input the name files (use * for numbers, e.g. *_Frame2.txt):  ') 
 print ()
 
 
@@ -65,7 +63,7 @@ columns_name = ['Time', 'Stress']
 def last_4chars(x):
     return(x[:2])
 ##Read and sort the txt files =================================================
-sx=fnmatch.filter(os.listdir(), Input_Files )
+sx=fnmatch.filter(os.listdir(path), Input_Files )
 sx.sort(key = last_4chars) 
 
 #==================================Main program================================
@@ -75,13 +73,13 @@ s11=[]
 t11=[]
 
 #==== Read and save the XY shear stress (pa) data in athe s11 list =================================    
-for j in range(int((len(fnmatch.filter(os.listdir(), Input_Files ))))):
+for j in range(int((len(fnmatch.filter(os.listdir(path), Input_Files ))))):
         f_number=int((sx[j].split(("_"),3)[0]))
         s = func.ReadFile(sx[j])
-        s = np.array(s)
+        s = np.array(s)[4:]
         s11.append(np.average(s))
 #=======================================================================        
-s11 = np.array(s11) - np.array(s11)[0]
+s11 = np.array(s11)  - np.array(s11)[0]
 t11=ti[:len(s11)]      
       
 def moving_average(a, n) :
@@ -133,13 +131,13 @@ while option.lower() != 'q' :
    
     if option.lower() == 'g'  :
         G1, G11 = func.Green_Kubo(df, w)
-        print ("G' = ", G1, "(Pa)")
-        print ("G'' = ", G11, "(Pa)")
+        print ("log(G') = ", np.log(G1), "(Pa)")
+        print ("log(G'') = ", np.log(G11), "(Pa)")
     
     elif option.lower() == 't'  :
         G1, G11 = func.stress_strain(df,w,Strain0,dt,NDT)
-        print ("G' = ", G1, "(Pa)")
-        print ("G'' = ", G11, "(Pa)")
+        print ("log(G') = ", np.log(G1), "(Pa)")
+        print ("log(G'') = ", np.log(G11), "(Pa)")
     
     elif option.lower() == 'p'  :
         plt.plot(df.Time, df.G)  
