@@ -14,7 +14,7 @@ import csv
 import func
 
 #path = "New renamed files path ( e.g. C:/.../test/data)"
-path0 = Test/Data/
+path0 = "Test/Data/"
 
 ####################################### Parameters and inputs##################
 def splitstrip(s):
