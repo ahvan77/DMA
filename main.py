@@ -54,8 +54,8 @@ print ()
 print ()
 
 ###################Input File#############################################
-#Input_Files = "*_Frame2.txt"                         # Stress text files 
-Input_Files = input('Input the name files (use * for numbers, e.g. *_Frame2.txt):  ') 
+Input_Files = "*_Frame2.txt"                         # Stress text files 
+#Input_Files = input('Input the name files (use * for numbers, e.g. *_Frame2.txt):  ') 
 print ()
 
 
