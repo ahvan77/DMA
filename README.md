@@ -13,16 +13,26 @@ The storage and loss modulus are calculated using two different methods as gollo
 1. Green-Kubo
 2. Stress time series
 
-# Input
-The Materials Studio® (version 2021) stress output text files (e.g. see the test directory)  
+# Input, Dependency files and Scripts
+NEMD processing:
 
+1. Materials Studio® input files: your system + ***MD_run.pl*** : The parameters should be revised according to your purpose
+
+Post processing:
+
+2. ***rename_file.py***
+3. ***main.py***
+4. ***param.dat*** :  The value of the parameters must be the same as the parameters of the Perl code.
+5. ***func.py*** 
+
+*Place all files in the main folder or update the path in the scripts*
 # Description and running
+How it works: 
 ![alt text](DMA_flow.png)
+
 1. The periodic shear stresses must be calculated using molecular dynamics simulations, and in the current version, simulations must be conducted in the Materials Studio® environment (As an example see test.pl in the /test directory)
-2. Rename the Materials Studio® output files (text files): ***(X).txt => X_***.txt (As an example, see the name.py in the test/ directory)
+2. According to the flowchart, rename the Materials Studio® output files (text files): ***...(No.).txt => No._...txt*** (As an example, see the ***rename_file.py*** in the test/ directory)
 3. Run the main.py in the src directory.
 4. Choose the desirable methods to calculate the shear moduli  
 
-# Dependency files and scripts of main.py
-1. params.dat is the input file. The value of the parameters must be the same as the parameters of the Perl code.
-2. func.py
+
