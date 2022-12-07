@@ -23,5 +23,6 @@ The Materials Studio® (version 2021) stress output text files (e.g. see the tes
 4. Choose the desirable methods to calculate the shear moduli  
 
 # Dependency files and scripts of main.py
+![alt text](DMA_flow.png)
 1. params.dat is the input file. The value of the parameters must be the same as the parameters of the Perl code.
 2. func.py
